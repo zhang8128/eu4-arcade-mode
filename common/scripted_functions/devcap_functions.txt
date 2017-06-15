@@ -1,0 +1,35 @@
+# Replaced from 00_scripted_functions.txt
+# Note requires functions to be deleted from 00_scripted_functions.txt
+
+can_improve_tax = {
+  condition = {
+    tooltip = "DEVCAP_TAX_TOOLTIP"
+    potential = {
+    }
+    allow = {
+      base_tax_maximum = no
+    }
+  }
+}
+
+can_improve_production = {
+  condition = {
+    tooltip = "DEVCAP_PRODUCTION_TOOLTIP"
+    potential = {
+    }
+    allow = {
+      base_production_maximum = no
+    }
+  }
+}
+
+can_improve_manpower = {
+  condition = {
+    tooltip = "DEVCAP_MANPOWER_TOOLTIP"
+    potential = {
+    }
+    allow = {
+      base_manpower_maximum = no
+    }
+  }
+}

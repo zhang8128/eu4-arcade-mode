@@ -74,15 +74,6 @@ can_make_state = {
 can_abandon_state = {
 }
 
-can_improve_tax = {
-}
-
-can_improve_production = {
-}
-
-can_improve_manpower = {
-}
-
 can_change_culture = {
 }
 

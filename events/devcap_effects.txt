@@ -1,0 +1,290 @@
+namespace = devcap
+
+#hidden events to limit development between base_[dev_type]_minimum and base_[dev_type]_maximum.
+
+province_event = {
+	id = devcap.1
+	title = devcap_t_1
+	desc = devcap_d_1
+	hidden = yes
+	trigger = {
+		base_tax_minimum = no
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+	immediate {
+		hidden_effect {
+			add_base_tax = 1
+		}
+	}
+	option = {
+		name = "devcap_o_1"
+		ai_chance = { factor = 1 }
+	}
+}
+
+province_event = {
+	id = devcap.2
+	title = devcap_t_2
+	desc = devcap_d_2
+	hidden = yes
+	trigger = {
+		base_production_minimum = no
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+	immediate {
+		hidden_effect {
+			add_base_production = 1
+		}
+	}
+	option = {
+		name = "devcap_o_2"
+		ai_chance = { factor = 1 }
+	}
+}
+
+province_event = {
+	id = devcap.3
+	title = devcap_t_3
+	desc = devcap_d_3
+	hidden = yes
+	trigger = {
+		base_manpower_minimum = no
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+	immediate {
+		hidden_effect {
+			add_base_manpower = 1
+		}
+	}
+	option = {
+		name = "devcap_o_3"
+		ai_chance = { factor = 1 }
+	}
+}
+
+province_event = {
+	id = devcap.4
+	title = devcap_t_4
+	desc = devcap_d_4
+	hidden = yes
+	trigger = {
+		base_tax_over_max = yes
+		OR = {
+			base_production_maximum = no
+			base_manpower_maximum = no
+		}
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+	immediate {
+		hidden_effect {
+			add_base_tax = -1
+			if = {
+				limit = {
+					base_manpower_maximum = no
+				}
+				add_base_manpower = 1
+				else = {
+					add_base_production = 1
+				}
+			}
+		}
+	}
+	option = {
+		name = "devcap_o4"
+		ai_chance = { factor = 1 }
+	}
+}
+
+province_event = {
+	id = devcap.5
+	title = devcap_t_5
+	desc = devcap_d_5
+	hidden = yes
+	trigger = {
+		base_production_over_max = yes
+		OR = {
+			base_tax_maximum = no
+			base_manpower_maximum = no
+		}
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+	immediate {
+		hidden_effect {
+			add_base_production = -1
+			if = {
+				limit = {
+					base_tax_maximum = no
+				}
+				add_base_tax = 1
+				else = {
+					add_base_manpower = 1
+				}
+			}
+		}
+	}
+	option = {
+		name = "devcap_o5"
+		ai_chance = { factor = 1 }
+	}
+}
+
+province_event = {
+	id = devcap.6
+	title = devcap_t_6
+	desc = devcap_d_6
+	hidden = yes
+	trigger = {
+		base_manpower_over_max = yes
+		OR = {
+			base_production_maximum = no
+			base_tax_maximum = no
+		}
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+	immediate {
+		hidden_effect {
+			add_base_manpower = -1
+			if = {
+				limit = {
+					base_production_maximum = no
+				}
+				add_base_production = 1
+				else = {
+					add_base_tax = 1
+				}
+			}
+		}
+	}
+	option = {
+		name = "devcap_o6"
+		ai_chance = { factor = 1 }
+	}
+}
+
+#Overflow development to nearby owned provinces
+
+province_event = {
+	id = devcap.7
+	title = devcap_t_7
+	desc = devcap_d_7
+	hidden = yes
+	trigger = {
+		base_tax_over_max = yes
+		development_maxed = yes
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+	immediate {
+		hidden_effect {
+			add_base_tax = -1
+			if = {
+				limit = {
+					all_neighbor_province = {
+						limit = { owned_by = ROOT }
+						devcap_maximum = no
+					}
+				}
+				random_neighbor_province = {
+					limit = {
+						owned_by = ROOT
+						development_maxed = no
+					}
+					add_base_tax = 1
+				}
+			}
+		}
+	}
+	option = {
+		name = "devcap_o7"
+		ai_chance = { factor = 1 }
+	}
+}
+
+province_event = {
+	id = devcap.8
+	title = devcap_t_8
+	desc = devcap_d_8
+	hidden = yes
+	trigger = {
+		base_production_over_max = yes
+		development_maxed = yes
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+	immediate {
+		hidden_effect {
+			add_base_production = -1
+			if = {
+				limit = {
+					all_neighbor_province = {
+						limit = { owned_by = ROOT }
+						devcap_maximum = no
+					}
+				}
+				random_neighbor_province = {
+					limit = {
+						owned_by = ROOT
+						development_maxed = no
+					}
+					add_base_production = 1
+				}
+			}
+		}
+	}
+	option = {
+		name = "devcap_o8"
+		ai_chance = { factor = 1 }
+	}
+}
+
+province_event = {
+	id = devcap.9
+	title = devcap_t_9
+	desc = devcap_d_9
+	hidden = yes
+	trigger = {
+		base_manpower_over_max = yes
+		development_maxed = yes
+	}
+	mean_time_to_happen = {
+		days = 1
+	}
+	immediate {
+		hidden_effect {
+			add_base_manpower = -1
+			if = {
+				limit = {
+					all_neighbor_province = {
+						limit = { owned_by = ROOT }
+						devcap_maximum = no
+					}
+				}
+				random_neighbor_province = {
+					limit = {
+						owned_by = ROOT
+						development_maxed = no
+					}
+					add_base_manpower = 1
+				}
+			}
+		}
+	}
+	option = {
+		name = "devcap_o9"
+		ai_chance = { factor = 1 }
+	}
+}
