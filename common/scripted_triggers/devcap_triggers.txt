@@ -1,0 +1,43 @@
+#DEVCAP TRIGGERS
+
+base_tax_minimum = {
+	base_tax = 4
+}
+
+base_production_minimum = {
+	base_production = 4
+}
+
+base_manpower_minimum = {
+	base_manpower = 4
+}
+
+base_tax_maximum = {
+	base_tax = 4
+}
+
+base_production_maximum = {
+	base_production = 4
+}
+
+base_manpower_maximum = {
+	base_manpower = 4
+}
+
+base_tax_over_max = {
+	base_tax = 5
+}
+
+base_production_over_max = {
+	base_production = 5
+}
+
+base_manpower_over_max = {
+	base_manpower = 5
+}
+
+development_maxed = {
+	base_tax_maximum = yes
+	base_production_maximum = yes
+	base_manpower_maximum = yes
+}
