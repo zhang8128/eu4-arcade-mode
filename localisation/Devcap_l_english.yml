@@ -1,0 +1,4 @@
+﻿l_english:
+ DEVCAP_TAX_TOOLTIP:0 "Maximum Base Tax Reached"
+ DEVCAP_PRODUCTION_TOOLTIP:0 "Maximum Base Development Reached"
+ DEVCAP_MANPOWER_TOOLTIP:0 "Maximum Base Manpower Reached"
