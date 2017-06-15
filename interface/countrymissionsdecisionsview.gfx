@@ -1,0 +1,32 @@
+spriteTypes = {
+
+	spriteType = {
+		name = "GFX_policy_entry_bg"
+		texturefile = "gfx//interface//policy_entry_bg.dds"
+	}
+
+	spriteType = {
+		name = "GFX_country_mission_view_bg"
+		texturefile = "gfx//interface//country_mission_view_bg.dds"
+		loadType = "INGAME"
+		transparencecheck = yes	
+	}
+	spriteType = {
+		name = "GFX_country_mission_view_bg_large"
+		texturefile = "gfx//interface//country_mission_view_bg_large.dds"
+		loadType = "INGAME"
+		transparencecheck = yes	
+	}
+	spriteType = {
+		name = "GFX_country_mission_view_bg_huge"
+		texturefile = "gfx//interface//country_mission_view_bg_huge.dds"
+		loadType = "INGAME"
+		transparencecheck = yes	
+	}		
+	
+	spriteType = {
+		name = "GFX_missionsdecisions_choosemission_bg"
+		texturefile = "gfx//interface//country_missionsdecisions_choosemission_bg.dds"
+		transparencecheck = yes 
+	}
+}

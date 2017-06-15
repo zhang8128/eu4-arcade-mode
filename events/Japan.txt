@@ -1,0 +1,203 @@
+########################################
+# Japan Events                         #
+########################################
+
+namespace = japan
+
+# The DYNASTYNAME shogunate has fallen!
+province_event = {
+	id = japan.1
+	title = "japan.EVTNAME1"
+	picture = COURT_eventPicture
+	
+	major = yes
+	is_triggered_only = yes
+	
+	desc = {
+		trigger = {
+			owner = { government = shogunate }
+			FROM = {
+				government = shogunate
+			}
+		}
+		desc = japan.EVTDESC1
+	}
+	
+	desc = {
+		trigger = {
+			owner = { government = shogunate }
+			FROM = {
+				NOT = { government = shogunate }
+			}
+		}
+		desc = japan.1.db
+	}
+	
+	desc = {
+		trigger = {
+			owner = {
+				NOT = { government = shogunate }
+			}
+		}
+		desc = japan.1.dc
+	}
+	
+	trigger = {
+		# OBS! These checks are also hard coded in WouldBecomeShogunIfTaking() for AI and interface reasons. Change code too if this trigger changes.
+		province_id = 1020
+		#owner = {
+		#	OR = {
+		#		government = daimyo
+		#		government = indep_daimyo
+		#	}
+		#}
+	}
+	
+	immediate = {
+		hidden_effect = {
+			owner = {
+				if = {
+					limit = {
+						OR = {
+							government = daimyo
+							government = indep_daimyo
+						}
+					}
+					change_government = shogunate
+					save_event_target_as = new_shogunate
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = "japan.EVTOPTA1"
+		if = {
+			limit = {
+				owner = { government = shogunate }
+			}
+			custom_tooltip = claiming_the_shogunate_tooltip
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					exists = FROM
+					owner = { government = shogunate }
+					FROM = { government = shogunate }
+				}
+				FROM = {
+					free_vassal = PREV
+				}
+				FROM = {
+					every_subject_country = {
+						limit = {
+							OR = {
+								government = daimyo
+								government = indep_daimyo
+							}
+						}
+						event_target:new_shogunate = {
+							vassalize = PREV
+						}
+					}
+					change_government = indep_daimyo
+				}
+			}
+			if = {
+				limit = {
+					exists = FROM
+					NOT = { owner = { government = shogunate } }
+					FROM = { government = shogunate }
+				}
+				FROM = {
+					every_subject_country = {
+						limit = {
+							OR = {
+								government = daimyo
+								government = indep_daimyo
+							}
+						}
+						FROM = {
+							free_vassal = PREV
+						}
+					}
+					change_government = indep_daimyo
+				}
+			}
+			if = {
+				limit = {
+					NOT = { exists = FROM }
+					owner = { government = shogunate }
+				}
+				every_country = {
+					limit = {
+						government = daimyo
+					}
+					event_target:new_shogunate = {
+						vassalize = PREV
+					}
+				}
+			}
+			if = {
+				limit = {
+					NOT = { exists = FROM }
+					NOT = {
+						owner = { government = shogunate }
+					}
+				}
+				every_country = {
+					limit = { government = daimyo }
+					overlord = {
+						free_vassal = PREV
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				owner = { government = shogunate }
+			}
+			owner = {
+				set_capital = 1020
+				add_core = 1020
+			#	swap_free_idea_group = yes		#keep progress
+			}
+		}
+		if = {
+			limit = {
+				NOT = {
+					owner = { government = shogunate }
+				}
+			}
+			owner = {
+				if = {
+					limit = { NOT = { has_country_flag = destroyed_shogunate } }
+					add_prestige = 20
+					add_adm_power = 50
+					add_dip_power = 50
+					add_mil_power = 50
+					set_country_flag = destroyed_shogunate
+				}
+			}
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					any_country = {
+						is_subject_of_type = daimyo_vassal
+						NOT = { overlord = { government = shogunate } }
+					}
+				}
+				every_country = {
+					limit = {
+						is_subject_of_type = daimyo_vassal
+						NOT = { overlord = { government = shogunate } }
+					}
+					overlord = {
+						free_vassal = PREV
+					}
+				}
+			}
+		}
+	}
+}
